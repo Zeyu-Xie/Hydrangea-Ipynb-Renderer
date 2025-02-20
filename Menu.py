@@ -34,7 +34,7 @@ class Menu:
             save_filename=os.path.basename(window.ipynb_path),
         )
         if result:
-            ipynb_content = open(window.ipynb_path, "r").read()
+            ipynb_content = open(window.ipynb_path, "r", encoding="utf-8").read()
             with open(result, "w") as file:
                 file.write(ipynb_content)
 

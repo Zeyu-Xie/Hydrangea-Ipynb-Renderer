@@ -8,7 +8,7 @@ class Config:
 
     def __init__(self, config_path):
         self.config_path = config_path
-        with open(config_path, "r") as file:
+        with open(config_path, "r", encoding="utf-8") as file:
             self.config = yaml.load(file, Loader=yaml.FullLoader)
 
     def __str__(self):
@@ -16,7 +16,7 @@ class Config:
 
     def load(self, config_path):
         self.config_path = config_path
-        with open(config_path, "r") as file:
+        with open(config_path, "r", encoding="utf-8") as file:
             self.config = yaml.load(file, Loader=yaml.FullLoader)
 
     def save(self):

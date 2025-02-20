@@ -7,7 +7,14 @@ import sys
 import threading
 
 
-def main():
+def terminate():
+    for window in webview.windows:
+        window.destroy()
+
+
+def main(hook):
+
+    Window.terminate_hook = hook
 
     ipynb_path_list = sys.argv[1:]
     for ipynb_path in ipynb_path_list:
@@ -26,5 +33,7 @@ if __name__ == "__main__":
         html="about:blank",
         hidden=True,
     )
-    threading.Thread(target=main).start()
-    webview.start(menu=main_menu.menu_items(), debug=main_config.config["develop"]["debug"])
+    threading.Thread(target=main, daemon=True, args=(terminate,)).start()
+    webview.start(
+        menu=main_menu.menu_items(), debug=main_config.config["develop"]["debug"]
+    )
