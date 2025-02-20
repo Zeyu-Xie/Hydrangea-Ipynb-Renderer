@@ -1,0 +1,26 @@
+* {
+  {{ style_allowTextSelect }}
+}
+
+{{ style_showScrollBar }}
+
+body {
+  max-width: {{ style_contentWidth }}%;
+  margin: 0 auto;
+}
+
+pre {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  word-wrap: break-word;
+  {{ style_codeWrap }}
+}
+
+section {
+  padding: 40px;
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 柔和的阴影 */
+  border: 1px solid #ddd;
+  margin: {{ style_pageSpace }}px 0;
+}

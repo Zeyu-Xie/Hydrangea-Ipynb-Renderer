@@ -1,0 +1,23 @@
+develop:
+  debug: true
+style:
+  allow_text_select: true
+  code_wrap: true
+  content_width: 80
+  page_space: 10
+  show_scrollbar: true
+theme:
+  current_theme: ./src/css/syntax.css
+  fundamental_style: ./src/css/_fundamental.css
+  theme_list:
+  - ./src/css/github.css
+  - ./src/css/night.css
+  - ./src/css/whitey.css
+  - ./src/css/pixyll.css
+  - ./src/css/newsprint.css
+  - ./src/css/gothic.css
+  - ./src/css/syntax.css
+window:
+  full_screen: false
+  height: 600
+  width: 800
