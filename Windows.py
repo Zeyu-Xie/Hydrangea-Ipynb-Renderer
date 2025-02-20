@@ -18,6 +18,7 @@ class Window:
             width=main_config.config["window"]["width"],
             height=main_config.config["window"]["height"],
             fullscreen=main_config.config["window"]["full_screen"],
+            resizable=not main_config.config["window"]["lock_window_size"],
         )
         self.window.events.closed += self.__close
         Window.instances[self.window] = self
@@ -30,7 +31,9 @@ class Window:
             Window.terminate_hook()
 
     def refresh(self):
+        Window.instances["tmp"] = ""
         self.window.destroy()
+        del Window.instances["tmp"]
         self.window = webview.create_window(
             self.title,
             html=main_ipynb_converter.convert(self.ipynb_path),
