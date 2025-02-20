@@ -110,6 +110,13 @@ class Menu:
             )
         return theme_items
 
+    # Window - Default Size
+    def __menu_window_defaultSize_(self, width, height):
+        main_config.config["window"]["width"] = width
+        main_config.config["window"]["height"] = height
+        main_config.save()
+        main_windows.refresh()
+
     # Window - Minimize
     def __menu_window_minimize(self):
         webview.active_window().minimize()
@@ -203,6 +210,16 @@ class Menu:
             wm.Menu(
                 "Window",
                 [
+                    wm.Menu(
+                        "Default Size",
+                        [
+                            wm.MenuAction("800x600", lambda: self.__menu_window_defaultSize_(800, 600)),
+                            wm.MenuAction("1024x768", lambda: self.__menu_window_defaultSize_(1024, 768)),
+                            wm.MenuAction("1280x720", lambda: self.__menu_window_defaultSize_(1280, 720)),
+                            wm.MenuAction("1366x768", lambda: self.__menu_window_defaultSize_(1366, 768)),
+                            wm.MenuAction("1920x1080", lambda: self.__menu_window_defaultSize_(1920, 1080)),
+                        ],
+                    ),
                     wm.MenuAction("Minimize", lambda: self.__menu_window_minimize()),
                     wm.MenuAction("Full Screen", lambda: self.__menu_window_fullScreen())
                 ],
