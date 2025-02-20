@@ -20,4 +20,5 @@ theme:
 window:
   full_screen: false
   height: 600
+  lock_window_size: true
   width: 800

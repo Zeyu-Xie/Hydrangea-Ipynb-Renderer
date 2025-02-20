@@ -28,6 +28,7 @@ class Window:
             width=main_config.config["window"]["width"],
             height=main_config.config["window"]["height"],
             fullscreen=main_config.config["window"]["full_screen"],
+            resizable=not main_config.config["window"]["lock_window_size"],
         )
         Window.instances[self.window] = self
         self.window.show()

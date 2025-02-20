@@ -116,6 +116,12 @@ class Menu:
         main_config.config["window"]["height"] = height
         main_config.save()
         main_windows.refresh()
+    
+    # Window - Lock Window Size
+    def __menu_window_lockWindowSize(self):
+        main_config.config["window"]["lock_window_size"] = not main_config.config["window"]["lock_window_size"]
+        main_config.save()
+        main_windows.refresh()
 
     # Window - Minimize
     def __menu_window_minimize(self):
@@ -220,6 +226,7 @@ class Menu:
                             wm.MenuAction("1920x1080", lambda: self.__menu_window_defaultSize_(1920, 1080)),
                         ],
                     ),
+                    wm.MenuAction("Lock Window Size", lambda: self.__menu_window_lockWindowSize()),
                     wm.MenuAction("Minimize", lambda: self.__menu_window_minimize()),
                     wm.MenuAction("Full Screen", lambda: self.__menu_window_fullScreen())
                 ],
