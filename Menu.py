@@ -104,7 +104,7 @@ class Menu:
         for theme in main_config.config["theme"]["theme_list"]:
             theme_items.append(
                 wm.MenuAction(
-                    os.path.basename(theme),
+                    os.path.basename(theme).replace(".css", "").capitalize(),
                     lambda theme=theme: self.__set_themes_as_current(theme),
                 )
             )
@@ -138,21 +138,42 @@ class Menu:
         main_config.config["develop"]["debug"] = not main_config.config["develop"]["debug"]
         main_config.save()
 
-    # About - Version
+    # Help - Welcome
+    def __menu_about_welcome(self):
+        print("Menu: About - Welcome")
+
+    # Help - Version
     def __menu_about_version(self):
         print("Menu: About - Version")
-    
-    # About - License
+
+    # Help - License
     def __menu_about_license(self):
         print("Menu: About - License")
-    
-    # About - Source Code
-    def __menu_about_sourceCode(self):
+
+    # Help - Source Code
+    def __menu_about_source_code(self):
         print("Menu: About - Source Code")
-    
-    # About - Report Issue
-    def __menu_about_reportIssue(self):
+
+    # Help - Report Issue
+    def __menu_about_report_issue(self):
         print("Menu: About - Report Issue")
+
+    # Help - Sponsor
+    def __menu_about_sponsor(self):
+        print("Menu: About - Sponsor")
+
+    # Help - Contact Us
+    def __menu_about_contact(self):
+        print("Menu: About - Contact Us")
+
+    # Help - Help
+    def __menu_about_help(self):
+        print("Menu: About - Help")
+
+    # Help - Feedback
+    def __menu_about_feedback(self):
+        print("Menu: About - Feedback")
+
 
     def menu_items(self):
 
@@ -162,16 +183,16 @@ class Menu:
                 [
                     wm.MenuAction("Open", lambda: self.__menu_file_open()),
                     wm.MenuSeparator(),
-                    wm.MenuAction("Save As...", lambda: self.__menu_file_saveAs()),
+                    wm.MenuAction("Save As", lambda: self.__menu_file_saveAs()),
                     wm.Menu(
-                        "Export",
+                        "Export As",
                         [
-                            wm.MenuAction("HTML", lambda: self.__menu_file_export_html())
+                            wm.MenuAction("Export as HTML", lambda: self.__menu_file_export_html())
                         ],
                     ),
                     wm.MenuSeparator(),
                     wm.MenuAction(
-                        "Close Current", lambda: self.__menu_file_closeCurrent()
+                        "Close File", lambda: self.__menu_file_closeCurrent()
                     ),
                     wm.MenuAction("Close All", lambda: self.__menu_file_closeAll()),
                     wm.MenuSeparator(),
@@ -182,7 +203,7 @@ class Menu:
                 "Style",
                 [
                     wm.Menu(
-                        "Content Width",
+                        "Set Content Width",
                         [
                             wm.MenuAction("60%", lambda: self.__menu_style_contentWidth_(60)),
                             wm.MenuAction("70%", lambda: self.__menu_style_contentWidth_(70)),
@@ -192,7 +213,7 @@ class Menu:
                         ],
                     ),
                     wm.Menu(
-                        "Page Space",
+                        "Set Page Spacing",
                         [
                             wm.MenuAction("Extra Small", lambda: self.__menu_style_pageSpace_(2)),
                             wm.MenuAction("Small", lambda: self.__menu_style_pageSpace_(6)),
@@ -201,13 +222,13 @@ class Menu:
                             wm.MenuAction("Extra Large", lambda: self.__menu_style_pageSpace_(36)),
                         ],
                     ),
-                    wm.MenuAction("Code Wrap", lambda: self.__menu_style_codeWrap()),
+                    wm.MenuAction("Toggle Code Wrapping", lambda: self.__menu_style_codeWrap()),
                     wm.MenuAction(
-                        "Allow Text Select",
+                        "Toggle Text Selection",
                         lambda: self.__menu_style_allowTextSelect(),
                     ),
                     wm.MenuAction(
-                        "Show Scrollbar",
+                        "Show Scrollbars",
                         lambda: self.__menu_style_showScrollbar(),
                     ),
                 ],
@@ -217,7 +238,7 @@ class Menu:
                 "Window",
                 [
                     wm.Menu(
-                        "Default Size",
+                        "Set Default Size",
                         [
                             wm.MenuAction("800x600", lambda: self.__menu_window_defaultSize_(800, 600)),
                             wm.MenuAction("1024x768", lambda: self.__menu_window_defaultSize_(1024, 768)),
@@ -226,32 +247,32 @@ class Menu:
                             wm.MenuAction("1920x1080", lambda: self.__menu_window_defaultSize_(1920, 1080)),
                         ],
                     ),
-                    wm.MenuAction("Lock Window Size", lambda: self.__menu_window_lockWindowSize()),
+                    wm.MenuAction("Lock Resize", lambda: self.__menu_window_lockWindowSize()),
                     wm.MenuAction("Minimize", lambda: self.__menu_window_minimize()),
-                    wm.MenuAction("Full Screen", lambda: self.__menu_window_fullScreen())
+                    wm.MenuAction("Toogle Full Screen", lambda: self.__menu_window_fullScreen())
+                ],
+            ),
+            wm.Menu(
+                "Develop",
+                [
+                    wm.MenuAction("Toggle Debug Mode", lambda: self.__menu_develop_debug())
                 ],
             ),
             wm.Menu(
                 "Help", 
                 [
-                    wm.MenuAction("Welcome", lambda: print("Welcome to Hydrangea Ipynb Viewer"))
+                    wm.MenuAction("Welcome", lambda: self.__menu_about_welcome()),
+                    wm.MenuAction("About Version", lambda: self.__menu_about_version()),
+                    wm.MenuAction("View License", lambda: self.__menu_about_license()),
+                    wm.MenuAction("View Source Code", lambda: self.__menu_about_source_code()),
+                    wm.MenuAction("Report an Issue", lambda: self.__menu_about_report_issue()),
+                    wm.MenuAction("Become a Sponsor", lambda: self.__menu_about_sponsor()),
+                    wm.MenuAction("Contact Us", lambda: self.__menu_about_contact()),
+                    wm.MenuSeparator(),
+                    wm.MenuAction("Help", lambda: self.__menu_about_help()),
+                    wm.MenuAction("Send Feedback", lambda: self.__menu_about_feedback()),
                 ]
-            ),
-            wm.Menu(
-                "Develop",
-                [
-                    wm.MenuAction("Debug", lambda: self.__menu_develop_debug())
-                ],
-            ),
-            wm.Menu(
-                "About",
-                [
-                    wm.MenuAction("Version", lambda: self.__menu_about_version()),
-                    wm.MenuAction("License", lambda: self.__menu_about_license()),
-                    wm.MenuAction("Source Code", lambda: self.__menu_about_sourceCode()),
-                    wm.MenuAction("Report Issue", lambda: self.__menu_about_reportIssue())
-                ],
-            ),
+            )
         ]
 
 
