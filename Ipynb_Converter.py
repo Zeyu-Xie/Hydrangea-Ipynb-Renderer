@@ -110,6 +110,7 @@ def add_css_content(html_bs4, css_path):
     css_template = open(
         os.path.join(os.path.dirname(__file__), css_path),
         "r",
+        encoding="utf-8",
     ).read()
     css.string = Template(css_template).render(
         style_contentWidth=main_config.config["style"]["content_width"],

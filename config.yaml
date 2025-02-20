@@ -1,7 +1,7 @@
 develop:
-  debug: true
+  debug: false
 style:
-  allow_text_select: true
+  allow_text_select: false
   code_wrap: true
   content_width: 80
   page_space: 20
@@ -19,6 +19,6 @@ theme:
   - ./src/css/syntax.css
 window:
   full_screen: false
-  height: 768
-  lock_window_size: true
-  width: 1024
+  height: 600
+  lock_window_size: false
+  width: 800
