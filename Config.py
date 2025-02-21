@@ -1,7 +1,13 @@
 import yaml
 import os
+import sys
 
-config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+if sys.platform.startswith("darwin"):
+    config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+elif sys.platform.startswith("win"):
+    config_path = os.path.join("C:\\", "Users", os.getlogin(), "AppData", "Roaming", "Jupyrender", "config.yaml")
+else:
+    config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
 
 
 class Config:

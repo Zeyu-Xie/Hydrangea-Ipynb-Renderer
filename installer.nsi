@@ -9,6 +9,9 @@ Section "Install"
     File /r "dist\Jupyrender\*"
     WriteRegStr HKCU "Software\Jupyrender" "Install_Dir" "$INSTDIR"
     CreateShortcut "$DESKTOP\Jupyrender.lnk" "$INSTDIR\Jupyrender.exe"
+    SetOutPath "$APPDATA\Jupyrender"
+    CreateDirectory "$APPDATA\Jupyrender"
+    File "dist\Jupyrender\_internal\config.yaml"
 SectionEnd
 
 Section "Uninstall"
@@ -18,5 +21,6 @@ Section "Uninstall"
     RMDir "$INSTDIR\src\css"
     RMDir "$INSTDIR"
     Delete "$DESKTOP\Jupyrender.lnk"
+    RMDir "$APPDATA\Jupyrender"
     DeleteRegKey HKCU "Software\Jupyrender"
 SectionEnd
